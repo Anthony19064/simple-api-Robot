@@ -8,6 +8,7 @@ ${BASE_URL}       http://192.168.1.101:5000
 Plus With Valid Numbers
     [Documentation]    ทดสอบ /plus/<a>/<b> ด้วยตัวเลขถูกต้อง
     Create Session    api    ${BASE_URL}
+    Sleep    2s    # รอ container start
     ${response}=      GET    /plus/3/5
     Should Be Equal As Integers    ${response.status_code}    200
     ${json}=          To Json    ${response.content}
@@ -16,6 +17,7 @@ Plus With Valid Numbers
 Plus With Invalid Numbers
     [Documentation]    ทดสอบ /plus/<a>/<b> ด้วย input ไม่ใช่ตัวเลข
     Create Session    api    ${BASE_URL}
+    Sleep    2s    # รอ container start
     ${response}=      GET    /plus/foo/bar
     Should Be Equal As Integers    ${response.status_code}    400
     ${json}=          To Json    ${response.content}
